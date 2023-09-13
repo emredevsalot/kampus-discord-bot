@@ -2,6 +2,9 @@
   "name": "kampus-discord-bot",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "start": "bun run bot.ts"
+  },
   "devDependencies": {
     "bun-types": "latest"
   },
