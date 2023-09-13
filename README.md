@@ -6,12 +6,18 @@ To install dependencies:
 bun install
 ```
 
-Create `.env.local` file and fill the values below
+Create `.env.local` file and fill the values below:
 
 ```
 DISCORD_TOKEN=
 CLIENT_ID=
 GUILD_ID=
+```
+
+Deploy commands:
+
+```
+bun run deploy-commands.ts
 ```
 
 To run:
