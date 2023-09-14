@@ -5,7 +5,7 @@ module.exports = {
     .setName("server")
     .setDescription("Display info about this server."),
   async execute(interaction: any) {
-    return interaction.reply(
+    await interaction.reply(
       `Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`
     );
   },
