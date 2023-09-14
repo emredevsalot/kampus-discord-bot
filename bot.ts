@@ -31,21 +31,15 @@ for (const folder of commandFolders) {
   }
 }
 
-// Dynamically retrieve and execute event files
-const eventsPath = path.join(__dirname, "events");
-const eventFiles = fs
-  .readdirSync(eventsPath)
-  .filter((file: any) => file.endsWith(".ts"));
-
-for (const file of eventFiles) {
-  const filePath = path.join(eventsPath, file);
-  const event = require(filePath);
-  if (event.once) {
-    client.once(event.name, (...args) => event.execute(...args));
-  } else {
-    client.on(event.name, (...args) => event.execute(...args));
-  }
-}
+// Handlers
+const handlersPath = path.join(__dirname, "handlers");
+const handlerFiles = fs
+  .readdirSync(handlersPath)
+  .filter((file: any) => file.endsWith("Handler.ts"));
+handlerFiles.forEach((handlerFile: any) => {
+  const filePath = path.join(handlersPath, handlerFile);
+  import(filePath).then((handler) => handler.default(client));
+});
 
 // login with the token from .env.local
 client.login(process.env.DISCORD_TOKEN);
