@@ -9,6 +9,8 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
 
 // Dynamically retrieve command files
+// TODO: We can move this part to a file called "commandsHandler.ts" with the deployment from "deploy-commands.ts"
+// But for quick testing purposes, let's keep it this way for now. We can run "deploy-commands.ts" whenever needed.
 const foldersPath = path.join(__dirname, "commands");
 const commandFolders = fs.readdirSync(foldersPath);
 
