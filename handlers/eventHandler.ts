@@ -33,5 +33,5 @@ export default async (client: Client) => {
         break;
     }
   }
-  console.log("EVENTS ARE READY!");
+  console.log("eventHandler.ts: Done");
 };
