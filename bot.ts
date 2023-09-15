@@ -7,6 +7,7 @@ import { Client, Collection, GatewayIntentBits } from "discord.js";
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.commands = new Collection();
+client.buttons = new Collection();
 
 // Dynamically retrieve command files
 // TODO: We can move this part to a file called "commandsHandler.ts" with the deployment from "deploy-commands.ts"
