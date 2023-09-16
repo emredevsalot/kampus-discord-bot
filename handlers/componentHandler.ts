@@ -15,7 +15,7 @@ export default async (client: Client) => {
       .readdirSync(subFolderPath)
       .filter((file: any) => file.endsWith(".ts"));
 
-    const { buttons } = client;
+    const { buttons, selectMenus } = client;
     // components/:componentSubFolders/:eachComponent.ts
     switch (subFolder) {
       case "buttons":
@@ -23,6 +23,14 @@ export default async (client: Client) => {
           const filePath = path.join(subFolderPath, file);
           const button = require(filePath);
           buttons.set(button.data.name, button);
+        }
+        break;
+
+      case "selectMenus":
+        for (const file of componentFiles) {
+          const filePath = path.join(subFolderPath, file);
+          const menu = require(filePath);
+          selectMenus.set(menu.data.name, menu);
         }
         break;
 
