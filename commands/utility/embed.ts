@@ -1,16 +1,17 @@
 // at the top of your file
 const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 
+import { CommandInteraction } from "discord.js";
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("embed")
     .setDescription("Returns an embed."),
-  async execute(interaction: any) {
+  async execute(interaction: CommandInteraction) {
     await interaction.reply({ embeds: [exampleEmbed] });
   },
 };
 
-// inside a command, event listener, etc.
 const exampleEmbed = new EmbedBuilder()
   .setColor(0xff0000)
   .setTitle("Some title")

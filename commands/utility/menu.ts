@@ -5,11 +5,13 @@ const {
   ActionRowBuilder,
 } = require("discord.js");
 
+import { CommandInteraction } from "discord.js";
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("menu")
     .setDescription("Returns a select menu!"),
-  async execute(interaction: any) {
+  async execute(interaction: CommandInteraction) {
     const menu = new StringSelectMenuBuilder()
       .setCustomId("example-menu")
       .setPlaceholder("Make a selection!")

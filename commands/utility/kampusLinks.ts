@@ -5,11 +5,13 @@ const {
   ButtonStyle,
 } = require("discord.js");
 
+import { CommandInteraction } from "discord.js";
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("kampus_links")
     .setDescription("Kampüsle alakalı linkler"),
-  async execute(interaction: any) {
+  async execute(interaction: CommandInteraction) {
     const twitch = new ButtonBuilder()
       .setCustomId("twitch")
       .setLabel("Usirin Twitch")

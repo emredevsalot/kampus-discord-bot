@@ -1,7 +1,6 @@
 const { Events } = require("discord.js");
-import { Client } from "discord.js";
 
-import type { CacheType, Interaction } from "discord.js";
+import { Client, CacheType, Interaction } from "discord.js";
 
 // Command interactions listener
 module.exports = {
