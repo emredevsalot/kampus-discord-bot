@@ -13,7 +13,7 @@ export default async (client: Client) => {
     const subFolderPath = path.join(eventsPath, subFolder);
     const eventFiles = fs
       .readdirSync(subFolderPath)
-      .filter((file: any) => file.endsWith(".ts"));
+      .filter((file: string) => file.endsWith(".ts"));
 
     // events/:eventSubFolders/:eachEvent.ts
     switch (subFolder) {

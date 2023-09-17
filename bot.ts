@@ -20,7 +20,7 @@ for (const folder of commandFolders) {
   const commandsPath = path.join(foldersPath, folder);
   const commandFiles = fs
     .readdirSync(commandsPath)
-    .filter((file: any) => file.endsWith(".ts"));
+    .filter((file: string) => file.endsWith(".ts"));
   for (const file of commandFiles) {
     const filePath = path.join(commandsPath, file);
     const command = require(filePath);
@@ -39,8 +39,8 @@ for (const folder of commandFolders) {
 const handlersPath = path.join(__dirname, "handlers");
 const handlerFiles = fs
   .readdirSync(handlersPath)
-  .filter((file: any) => file.endsWith("Handler.ts"));
-handlerFiles.forEach((handlerFile: any) => {
+  .filter((file: string) => file.endsWith("Handler.ts"));
+handlerFiles.forEach((handlerFile: string) => {
   const filePath = path.join(handlersPath, handlerFile);
   import(filePath).then((handler) => handler.default(client));
 });
