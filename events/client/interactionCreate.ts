@@ -1,6 +1,6 @@
 const { Events } = require("discord.js");
 
-import { Client, CacheType, Interaction } from "discord.js";
+import { Interaction, CacheType, Client } from "discord.js";
 
 // Command interactions listener
 module.exports = {
@@ -33,6 +33,17 @@ module.exports = {
       } catch (err) {
         console.log(err);
       }
+    } else if (interaction.isModalSubmit()) {
+      const { modals } = interaction.client;
+      const { customId } = interaction;
+      const modal = modals.get(customId);
+      if (!modal) return new Error("There is no code for this modal");
+
+      try {
+        await modal.execute(interaction, client);
+      } catch (err) {
+        console.log(err);
+      }
     } else if (interaction.isStringSelectMenu()) {
       const { selectMenus } = interaction.client;
       const { customId } = interaction;
@@ -44,6 +55,7 @@ module.exports = {
       } catch (err) {
         console.log(err);
       }
+      // } else if (interaction.type == 5) {
     }
   },
 };
