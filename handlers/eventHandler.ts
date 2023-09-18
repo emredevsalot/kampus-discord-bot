@@ -20,11 +20,21 @@ export default async (client: Client) => {
       case "client":
         for (const file of eventFiles) {
           const filePath = path.join(subFolderPath, file);
-          const event = require(filePath);
-          if (event.once) {
-            client.once(event.name, (...args: any[]) => event.execute(...args));
+          const event = await import(filePath);
+          if (event.default) {
+            if (event.default.once) {
+              client.once(event.default.name, (...args: any[]) =>
+                event.default.execute(...args)
+              );
+            } else {
+              client.on(event.default.name, (...args: any[]) =>
+                event.default.execute(...args, client)
+              );
+            }
+            console.log("[SUCCESS]", file, "event file loaded.");
           } else {
-            client.on(event.name, (...args: any[]) => event.execute(...args));
+            console.log("[ERROR]", file, "event file is not loaded.");
+            continue;
           }
         }
         break;
@@ -33,5 +43,5 @@ export default async (client: Client) => {
         break;
     }
   }
-  console.log("eventHandler.ts: Done");
+  console.log("[SUCCESS] eventHandler.ts loaded.");
 };

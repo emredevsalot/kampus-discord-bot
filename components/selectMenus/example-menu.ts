@@ -1,6 +1,6 @@
 import { StringSelectMenuInteraction } from "discord.js";
 
-module.exports = {
+export default {
   data: { name: "example-menu" },
   async execute(interaction: StringSelectMenuInteraction) {
     await interaction.reply({

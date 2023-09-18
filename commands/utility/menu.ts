@@ -1,16 +1,16 @@
-const {
+import {
   SlashCommandBuilder,
+  CommandInteraction,
   StringSelectMenuBuilder,
   StringSelectMenuOptionBuilder,
   ActionRowBuilder,
-} = require("discord.js");
+} from "discord.js";
 
-import { CommandInteraction } from "discord.js";
-
-module.exports = {
+export default {
   data: new SlashCommandBuilder()
     .setName("menu")
     .setDescription("Returns a select menu!"),
+
   async execute(interaction: CommandInteraction) {
     const menu = new StringSelectMenuBuilder()
       .setCustomId("example-menu")
@@ -30,7 +30,9 @@ module.exports = {
 
     await interaction.reply({
       content: "Choose something!",
-      components: [new ActionRowBuilder().addComponents(menu)],
+      components: [
+        new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(menu),
+      ],
       ephemeral: true,
     });
   },

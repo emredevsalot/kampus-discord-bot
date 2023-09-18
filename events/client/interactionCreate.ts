@@ -1,9 +1,7 @@
-const { Events } = require("discord.js");
-
-import { Interaction, CacheType, Client } from "discord.js";
+import { Events, Interaction, CacheType, Client } from "discord.js";
 
 // Command interactions listener
-module.exports = {
+export default {
   name: Events.InteractionCreate,
   async execute(interaction: Interaction<CacheType>, client: Client) {
     if (interaction.isChatInputCommand()) {

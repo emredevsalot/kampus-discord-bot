@@ -1,6 +1,6 @@
 import { ModalSubmitInteraction } from "discord.js";
 
-module.exports = {
+export default {
   data: { name: "example-modal" },
   async execute(interaction: ModalSubmitInteraction) {
     await interaction.reply({

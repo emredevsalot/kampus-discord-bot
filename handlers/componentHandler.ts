@@ -21,24 +21,24 @@ export default async (client: Client) => {
       case "buttons":
         for (const file of componentFiles) {
           const filePath = path.join(subFolderPath, file);
-          const button = require(filePath);
-          buttons.set(button.data.name, button);
+          const button = await import(filePath);
+          buttons.set(button.default.data.name, button.default);
         }
         break;
 
       case "selectMenus":
         for (const file of componentFiles) {
           const filePath = path.join(subFolderPath, file);
-          const menu = require(filePath);
-          selectMenus.set(menu.data.name, menu);
+          const menu = await import(filePath);
+          selectMenus.set(menu.default.data.name, menu.default);
         }
         break;
 
       case "modals":
         for (const file of componentFiles) {
           const filePath = path.join(subFolderPath, file);
-          const modal = require(filePath);
-          modals.set(modal.data.name, modal);
+          const modal = await import(filePath);
+          modals.set(modal.default.data.name, modal.default);
         }
         break;
 
@@ -46,5 +46,5 @@ export default async (client: Client) => {
         break;
     }
   }
-  console.log("componentHandler.ts: Done");
+  console.log("[SUCCESS] componentHandler.ts loaded.");
 };

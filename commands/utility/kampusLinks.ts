@@ -1,16 +1,16 @@
-const {
+import {
   SlashCommandBuilder,
+  CommandInteraction,
   ActionRowBuilder,
   ButtonBuilder,
   ButtonStyle,
-} = require("discord.js");
+} from "discord.js";
 
-import { CommandInteraction } from "discord.js";
-
-module.exports = {
+export default {
   data: new SlashCommandBuilder()
     .setName("kampus_links")
     .setDescription("Kampüsle alakalı linkler"),
+
   async execute(interaction: CommandInteraction) {
     const twitch = new ButtonBuilder()
       .setCustomId("twitch")
@@ -27,7 +27,11 @@ module.exports = {
 
     await interaction.reply({
       components: [
-        new ActionRowBuilder().addComponents(twitch, monorepo, odin),
+        new ActionRowBuilder<ButtonBuilder>().addComponents(
+          twitch,
+          monorepo,
+          odin
+        ),
       ],
       ephemeral: true,
     });

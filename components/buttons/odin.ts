@@ -1,6 +1,6 @@
 import { ButtonInteraction } from "discord.js";
 
-module.exports = {
+export default {
   data: { name: "odin" },
   async execute(interaction: ButtonInteraction) {
     await interaction.reply({

@@ -1,12 +1,15 @@
 // at the top of your file
-const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
+import {
+  SlashCommandBuilder,
+  CommandInteraction,
+  EmbedBuilder,
+} from "discord.js";
 
-import { CommandInteraction } from "discord.js";
-
-module.exports = {
+export default {
   data: new SlashCommandBuilder()
     .setName("embed")
     .setDescription("Returns an embed."),
+
   async execute(interaction: CommandInteraction) {
     await interaction.reply({ embeds: [exampleEmbed] });
   },

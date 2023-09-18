@@ -1,11 +1,10 @@
-const { SlashCommandBuilder } = require("discord.js");
+import { SlashCommandBuilder, CommandInteraction } from "discord.js";
 
-import { CommandInteraction } from "discord.js";
-
-module.exports = {
+export default {
   data: new SlashCommandBuilder()
     .setName("server")
     .setDescription("Display info about this server."),
+
   async execute(interaction: CommandInteraction) {
     if (!interaction.guild) return;
 

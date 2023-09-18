@@ -1,18 +1,23 @@
-const {
+import {
   SlashCommandBuilder,
   ActionRowBuilder,
   ModalBuilder,
   TextInputStyle,
   TextInputBuilder,
-} = require("discord.js");
+  ModalActionRowComponentBuilder,
+  CommandInteraction,
+} from "discord.js";
 
-module.exports = {
+export default {
   data: new SlashCommandBuilder()
     .setName("modal")
     .setDescription("Returns a modal!"),
-  async execute(interaction: any) {
+
+  async execute(interaction: CommandInteraction) {
+    const modalCustomId = "example-modal";
+
     const modal = new ModalBuilder()
-      .setCustomId("example-modal")
+      .setCustomId(modalCustomId)
       .setTitle("My Example Modal");
 
     const textInput1 = new TextInputBuilder()
@@ -25,11 +30,15 @@ module.exports = {
       .setCustomId("modalInput2")
       .setLabel("My Text Input 2")
       .setRequired(true)
-      .setStyle(TextInputStyle.Short);
+      .setStyle(TextInputStyle.Paragraph);
 
     modal.addComponents(
-      new ActionRowBuilder().addComponents(textInput1),
-      new ActionRowBuilder().addComponents(textInput2)
+      new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(
+        textInput1
+      ),
+      new ActionRowBuilder<ModalActionRowComponentBuilder>().addComponents(
+        textInput2
+      )
     );
 
     await interaction.showModal(modal);

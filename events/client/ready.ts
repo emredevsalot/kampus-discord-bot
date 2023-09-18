@@ -1,12 +1,10 @@
-const { Events } = require("discord.js");
-
-import { Client } from "discord.js";
+import { Events, Client } from "discord.js";
 
 // When the client is ready, run this code (only once)
-module.exports = {
+export default {
   name: Events.ClientReady,
   once: true,
-  execute(client: Client<true>) {
+  async execute(client: Client<true>) {
     console.log(`Ready! Logged in as ${client.user.tag}`);
   },
 };
