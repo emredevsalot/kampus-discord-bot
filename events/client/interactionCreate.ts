@@ -53,7 +53,24 @@ export default {
       } catch (err) {
         console.log(err);
       }
-      // } else if (interaction.type == 5) {
+    } else if (interaction.isContextMenuCommand()) {
+      const contextCommand = interaction.client.commands.get(
+        interaction.commandName
+      );
+
+      if (!contextCommand) {
+        console.error(
+          `No command matching ${interaction.commandName} was found.`
+        );
+        return;
+      }
+
+      try {
+        await contextCommand.execute(interaction);
+      } catch (error) {
+        console.error(`Error executing ${interaction.commandName}`);
+        console.error(error);
+      }
     }
   },
 };
