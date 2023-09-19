@@ -4,7 +4,13 @@ const path = require("node:path");
 import { Client, Collection, GatewayIntentBits } from "discord.js";
 
 // Create an instance of Client
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMessageReactions,
+  ],
+});
 
 client.commands = new Collection();
 client.buttons = new Collection();
