@@ -1,4 +1,10 @@
-import { Events, Interaction, CacheType, Client } from "discord.js";
+import {
+  Events,
+  Interaction,
+  CacheType,
+  Client,
+  InteractionType,
+} from "discord.js";
 
 // Command interactions listener
 export default {
@@ -69,6 +75,23 @@ export default {
         await contextCommand.execute(interaction);
       } catch (error) {
         console.error(`Error executing ${interaction.commandName}`);
+        console.error(error);
+      }
+    } else if (interaction.isAutocomplete()) {
+      const autocompleteCommand = interaction.client.commands.get(
+        interaction.commandName
+      );
+
+      if (!autocompleteCommand) {
+        console.error(
+          `No command matching ${interaction.commandName} was found.`
+        );
+        return;
+      }
+
+      try {
+        await autocompleteCommand.autocomplete(interaction);
+      } catch (error) {
         console.error(error);
       }
     }
